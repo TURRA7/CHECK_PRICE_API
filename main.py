@@ -27,7 +27,8 @@ async def monitoring_price():
                 products = await select_all_item(session=session)
                 products_list = products['message']
                 if products_list == []:
-                     print("Отсутствуют товары для мониторинга!")
+                    print("Отсутствуют товары для мониторинга!")
+                    await asyncio.sleep(300)
                 else:
                     for product in products_list:
                             url_price = str(product['url_price'])
@@ -38,7 +39,7 @@ async def monitoring_price():
                                                         price=float(data_price['price']),
                                                         session=session)
                             print(result["message"])
-                await asyncio.sleep(3600)
+                    await asyncio.sleep(3600)
 
 
 async def main():
